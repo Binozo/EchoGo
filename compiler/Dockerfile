@@ -31,6 +31,7 @@ ENV STRIP=$TOOLCHAIN/bin/llvm-strip
 ENV TARGET=armv7a-linux-androideabi
 ENV NDK_INCLUDE=$TOOLCHAIN/sysroot/usr/include/
 ENV NDK_LIBS=$TOOLCHAIN/sysroot/usr/lib/arm-linux-androideabi/$API
+RUN rm $NDK_LIBS/../libc++_shared.so
 
 # Clean up
 RUN rm /tmp/commandlinetools-linux-6200805_latest.zip
