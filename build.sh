@@ -12,3 +12,8 @@ root=$(pwd)
 cd binaries/ltrace/
 bash ltrace.sh
 cd $root
+
+echo "Building strace"
+cd binaries/strace/
+bash strace.sh
+cd $root
