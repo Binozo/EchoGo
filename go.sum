@@ -1,4 +1,2 @@
-github.com/Binozo/GoTinyAlsa v0.0.0-20231105170137-0aa6328ccc3e h1:eeaiNWSeImbGJ8ZVPvwPIH3ckc3jBHbMglukHqofPyQ=
-github.com/Binozo/GoTinyAlsa v0.0.0-20231105170137-0aa6328ccc3e/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
-github.com/Binozo/GoTinyAlsa v0.0.0-20231105173613-20b2c05d90f1 h1:GdmrgGFesQX+xvKUjsB8v3+x86NqB8cvv9SGtnQd4xQ=
-github.com/Binozo/GoTinyAlsa v0.0.0-20231105173613-20b2c05d90f1/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
+github.com/Binozo/GoTinyAlsa v1.0.0 h1:T+HfB3egL3u2PLHwJWfLcS5OcmfjjddZxl3TLlYMkJM=
+github.com/Binozo/GoTinyAlsa v1.0.0/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
