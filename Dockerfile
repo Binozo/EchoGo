@@ -7,4 +7,4 @@ RUN go mod download && go mod verify
 COPY . .
 
 # Configured for Echo Dot 2. Gen
-CMD env GOOS=android GOARCH=arm GOARM=7 CGO_ENABLED=1 go build -o build/main example/AudioEcho.go
+CMD env GOOS=android GOARCH=arm GOARM=7 CGO_ENABLED=1 go build -o build/main cmd/main.go
