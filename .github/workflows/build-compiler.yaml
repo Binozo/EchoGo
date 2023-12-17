@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build -f compiler/Dockerfile -t ghcr.io/Binozo/echogosdkcompiler:latest .
+        run: docker build -f compiler/Dockerfile -t ghcr.io/binozo/echogosdkcompiler:latest .
