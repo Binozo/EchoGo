@@ -12,3 +12,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build the Docker image
         run: docker build -f compiler/Dockerfile -t ghcr.io/binozo/echogosdkcompiler:latest .
+      - name: Push Docker image
+        run: docker push ghcr.io/binozo/echogosdkcompiler:latest
