@@ -25,3 +25,9 @@ jobs:
 
       - name: Push Docker image
         run: docker push ghcr.io/binozo/echogosdkcompiler:latest
+
+      - name: Build the Go compiler image
+        run: docker build -t ghcr.io/binozo/echogo:latest .
+
+      - name: Push Go compiler image
+        run: docker push ghcr.io/binozo/echogo:latest
