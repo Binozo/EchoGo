@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: workflows/checkout@v3
       - name: Build the Docker image
         run: docker build -f compiler/Dockerfile -t ghcr.io/Binozo/echogosdkcompiler:latest .
