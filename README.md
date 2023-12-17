@@ -62,26 +62,25 @@ Run the following command.
 ##### Please note: Building the compiler will take a _long_ time.
 ```shell
 $ docker build -f compiler/Dockerfile -t echogosdkcompiler:latest .
+$ docker build -t ghcr.io/binozo/echogo:latest .
 ```
 
 ### Pull the prebuilt image
 Run the following commands:
 ```shell
-$ docker pull ghcr.io/binozo/echogosdkcompiler:latest
-$ docker tag ghcr.io/binozo/echogosdkcompiler:latest echogosdkcompiler:latest
+$ docker pull ghcr.io/binozo/echogo:latest
 ```
 
 ### Finally compiling your project
 Run the following commands:
 ```shell
-$ docker build --tag echogo:latest .
-$ docker run -v "$(pwd)":/EchoGoSDK/build echogo:latest
+$ docker run -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
 ```
 > [!NOTE]
 > Your entry `main()` function must be in `cmd/main.go`
 
 
-This will generate the `build` executable file in your project root.
+This will generate the `main` executable file in the `build` directory.
 
 ## Quickstart
 ```go
