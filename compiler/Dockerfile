@@ -26,10 +26,12 @@ ENV AR=$TOOLCHAIN/bin/llvm-ar
 ENV AS=$TOOLCHAIN/bin/armv7a-linux-androideabi${API}-clang
 ENV LD=$TOOLCHAIN/bin/arm-linux-androideabi-ld
 ENV CC=$TOOLCHAIN/bin/armv7a-linux-androideabi${API}-clang
+ENV CXX=$CC++
 ENV RANLIB=$TOOLCHAIN/bin/llvm-ranlib
 ENV STRIP=$TOOLCHAIN/bin/llvm-strip
 ENV TARGET=armv7a-linux-androideabi
-ENV NDK_INCLUDE=$TOOLCHAIN/sysroot/usr/include/
+ENV NDK_INCLUDE=$TOOLCHAIN/sysroot/usr/include
+ENV NDK_CXX_INCLUDE=$TOOLCHAIN/sysroot/usr/include/c++/v1
 ENV NDK_LIBS=$TOOLCHAIN/sysroot/usr/lib/arm-linux-androideabi/$API
 RUN rm $NDK_LIBS/../libc++_shared.so
 
