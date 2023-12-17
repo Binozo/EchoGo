@@ -24,7 +24,7 @@ Make sure your executable is named `echogo`.
 
 Now copy the following 3 files into the home directory of your Raspberry Pi (`/home/pi/`):
 - The `preloader_no_hdr.bin` file for booting
-- The `boot.sh` file from this repository for installation ([Link](https://github.com/Binozo/EchoGoSDK/blob/master/boot.sh))
+- The `boot.sh` file from this repository for installation ([Link](https://github.com/Binozo/EchoGoSDK/raw/master/boot.sh))
 - Your `echogo` executable
 
 SSH into your Pi's home directory and execute:
