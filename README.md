@@ -83,6 +83,12 @@ $ docker run -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
 This will generate the `main` executable file in the `build` directory.
 
 ## Quickstart
+### Install the package
+```shell
+$ go get -u github.com/Binozo/EchoGoSDK
+```
+
+### Example code
 ```go
 package examples
 
