@@ -87,8 +87,8 @@ This will generate the `main` executable file in the `build` directory.
 package examples
 
 import (
-	"EchoGoSDK/pkg/led"
-	"EchoGoSDK/pkg/mic"
+	"github.com/Binozo/EchoGoSDK/pkg/led"
+	"github.com/Binozo/EchoGoSDK/pkg/mic"
 	"bytes"
 	"fmt"
 	"time"

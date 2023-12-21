@@ -1,4 +1,4 @@
-module EchoGoSDK
+module github.com/Binozo/EchoGoSDK
 
 go 1.20
 

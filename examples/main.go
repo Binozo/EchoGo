@@ -1,10 +1,10 @@
 package examples
 
 import (
-	"EchoGoSDK/pkg/led"
-	"EchoGoSDK/pkg/mic"
 	"bytes"
 	"fmt"
+	"github.com/Binozo/EchoGoSDK/pkg/led"
+	"github.com/Binozo/EchoGoSDK/pkg/mic"
 	"time"
 )
 
