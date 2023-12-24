@@ -19,7 +19,7 @@ Make sure you preserve your `preloader_no_hdr.bin` file. You need it for booting
 Now you need a host system for your Echo because it can't live on its own.
 In this example, we are using a Raspberry Pi Zero 2 W.
 
-Compile your Go executable. Take a look in [Compilation](README.md#Compilation) for more info.
+Compile your Go executable. Take a look at [Compilation](README.md#Compilation) for more info.
 Make sure your executable is named `echogo`.
 
 Now copy the following 3 files into the home directory of your Raspberry Pi (`/home/pi/`):
