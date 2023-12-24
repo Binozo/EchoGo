@@ -1,5 +1,7 @@
 FROM ghcr.io/binozo/echogosdkcompiler:latest
 
+LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGoSDK"
+
 # Compile our stuff
 WORKDIR /EchoGoSDK
 

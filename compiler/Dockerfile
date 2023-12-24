@@ -1,5 +1,7 @@
 FROM golang:1.20
 
+LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGoSDK"
+
 # Base setup
 WORKDIR /
 RUN apt-get update
@@ -33,7 +35,32 @@ ENV TARGET=armv7a-linux-androideabi
 ENV NDK_INCLUDE=$TOOLCHAIN/sysroot/usr/include
 ENV NDK_CXX_INCLUDE=$TOOLCHAIN/sysroot/usr/include/c++/v1
 ENV NDK_LIBS=$TOOLCHAIN/sysroot/usr/lib/arm-linux-androideabi/$API
-RUN rm $NDK_LIBS/../libc++_shared.so
+#RUN rm $NDK_LIBS/../libc++_shared.so
+
+# Download includes
+WORKDIR /
+RUN git clone https://android.googlesource.com/platform/frameworks/native --single-branch --branch android-7.1.2_r23
+RUN cp -r /native/include/* $NDK_INCLUDE
+RUN rm -r native
+RUN git clone https://android.googlesource.com/platform/frameworks/native --single-branch --branch android-4.2.2_r1
+RUN mkdir -p $NDK_INCLUDE/utils
+RUN cp -r /native/include/utils/* $NDK_INCLUDE/utils
+RUN git clone https://android.googlesource.com/platform/system/core --single-branch --branch android-7.1.2_r39
+RUN mkdir -p $NDK_INCLUDE/cutils
+RUN mkdir -p $NDK_INCLUDE/log
+RUN mkdir -p $NDK_INCLUDE/system
+RUN cp -r /core/include/cutils/* $NDK_INCLUDE/cutils
+RUN cp -r /core/include/log/* $NDK_INCLUDE/log
+RUN cp -r /core/include/system/* $NDK_INCLUDE/system
+RUN git clone https://android.googlesource.com/platform/libnativehelper --single-branch --branch android-7.1.2_r39
+RUN mkdir -p $NDK_INCLUDE/nativehelper
+RUN cp -r /libnativehelper/include/nativehelper/* $NDK_INCLUDE/nativehelper
+RUN wget -O $NDK_INCLUDE/linux/binder.h https://android.googlesource.com/platform/prebuilts/ndk/+/refs/tags/android-7.1.2_r39/current/platforms/android-24/arch-arm/usr/include/linux/binder.h?format=TEXT
+#RUN git clone https://android.googlesource.com/platform/prebuilts/ndk --branch android-7.1.2_r39
+#RUN mkdir -p $NDK_INCLUDE/linux
+#RUN cp -r /ndk/current/platforms/android-24/arch-arm/usr/include/linux/* $NDK_INCLUDE/linux
+
+WORKDIR /
 
 # Clean up
 RUN rm /tmp/commandlinetools-linux-6200805_latest.zip
