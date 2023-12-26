@@ -4,3 +4,5 @@ github.com/Binozo/GoTinyAlsa v1.0.1 h1:m3D6IfqTD76iFHSqfllhdPOonsaY3+pp8VDFfAglx
 github.com/Binozo/GoTinyAlsa v1.0.1/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
 github.com/Binozo/GoTinyAlsa v1.0.2 h1:IpPA9hAvqunkggez72qPK8GsELEE0rH4wnKX+MJkvgY=
 github.com/Binozo/GoTinyAlsa v1.0.2/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
+github.com/gvalkov/golang-evdev v0.0.0-20220815104727-7e27d6ce89b6 h1:K9b8efT9f1NkITNgNAm2A1LuoamhG4pAhXVjz5Sfa5Q=
+github.com/gvalkov/golang-evdev v0.0.0-20220815104727-7e27d6ce89b6/go.mod h1:SAzVFKCRezozJTGavF3GX8MBUruETCqzivVLYiywouA=
