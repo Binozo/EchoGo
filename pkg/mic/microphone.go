@@ -4,24 +4,16 @@ import (
 	"github.com/Binozo/GoTinyAlsa/pkg/pcm"
 	"github.com/Binozo/GoTinyAlsa/pkg/tinyalsa"
 	"os/exec"
-	"time"
 )
 
 const CardNr = 0
 const DeviceNr = 24
 
 // Init the microphone i/o.
-// We need to kill the mixer process first.
-// We are literally fighting against the Android System.
+// Stop the mixer process which blocks our operations
 func Init() error {
-	cmd := exec.Command("killall", "mixer")
-	err := cmd.Run()
-	if err != nil {
-		return err
-	}
-	// We need a cool down to release the alsa device
-	time.Sleep(time.Millisecond * 250)
-	return nil
+	cmd := exec.Command("stop", "mixer")
+	return cmd.Run()
 }
 
 // GetDevice returns the pre-configured microphone alsa device
