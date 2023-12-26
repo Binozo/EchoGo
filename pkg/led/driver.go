@@ -3,6 +3,7 @@ package led
 import (
 	"bytes"
 	"os"
+	"os/exec"
 )
 
 // i2C device that sets the current led
@@ -18,8 +19,17 @@ const ledFrame = "/sys/devices/soc/11007000.i2c/i2c-0/0-003f/frame"
 const perm = os.FileMode(0644)
 
 // Init the basic setup for setting LED colors
+// Also stops the ledcontroller service
 func Init() error {
-	return basicSetup()
+	err := basicSetup()
+	if err != nil {
+		return err
+	}
+
+	// ledcontroller may overwrite our led config
+	// solution: let android kill it
+	cmd := exec.Command("stop", "ledcontroller")
+	return cmd.Run()
 }
 
 // SetColor Sets the specified color on the specified LED nr
