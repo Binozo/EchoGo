@@ -15,6 +15,6 @@ func GetDevice() tinyalsa.AlsaDevice {
 		SampleRate:  16000,
 		PeriodSize:  512,
 		PeriodCount: 4,
-		Format:      tinyalsa.PCM_OUT,
+		Format:      tinyalsa.PCM_FORMAT_S24_LE,
 	})
 }
