@@ -3,12 +3,26 @@ package examples
 import (
 	"bytes"
 	"fmt"
+	"github.com/Binozo/EchoGoSDK/pkg/buttons"
 	"github.com/Binozo/EchoGoSDK/pkg/led"
 	"github.com/Binozo/EchoGoSDK/pkg/mic"
 	"time"
 )
 
 func main() {
+	// Init Buttons
+	if err := buttons.Init(); err != nil {
+		panic(err)
+	}
+
+	buttons.ListenForVolumeButtons(func() {
+		// Up
+		led.SetColorAll(0, 255, 0)
+	}, func() {
+		// Down
+		led.SetColorAll(255, 0, 0)
+	})
+
 	// Init LEDs
 	if err := led.Init(); err != nil {
 		panic(err)
