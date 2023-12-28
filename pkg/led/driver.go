@@ -50,8 +50,9 @@ func SetColor(ledNr int, r int, g int, b int) error {
 // SetColorAll Sets the specified color on all available LEDs
 func SetColorAll(r int, g int, b int) error {
 	var targetColor bytes.Buffer
-	for _, led := range leds {
+	for index, led := range leds {
 		led.SetColor(r, g, b)
+		leds[index] = led
 		targetColor.Write(led.BuildArgument())
 	}
 	return os.WriteFile(ledFrame, targetColor.Bytes(), perm)
