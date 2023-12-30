@@ -90,6 +90,11 @@ echo "Waiting for Device to come online..."
 adb wait-for-device
 echo "Uploading your executable..."
 adb push $targetWorkingDir/$executableFileName /data/local/tmp/echogo
+echo "Waiting until WiFi is available..."
+while [ "$(hostname -I)" = "" ]; do
+  echo -e "\e[1A\e[KNo network: $(date)"
+  sleep 1
+done
 echo "Starting your executable..."
 adb shell "chmod +x /data/local/tmp/echogo"
 adb shell "cd /data/local/tmp/ && ./echogo"
