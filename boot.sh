@@ -97,4 +97,9 @@ while [ "$(hostname -I)" = "" ]; do
 done
 echo "Starting your executable..."
 adb shell "chmod +x /data/local/tmp/echogo"
-adb shell "cd /data/local/tmp/ && ./echogo"
+
+while true
+do
+  adb shell "cd /data/local/tmp/ && ./echogo"
+  echo "The process died. Restarting..."
+done
