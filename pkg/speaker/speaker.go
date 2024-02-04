@@ -11,7 +11,7 @@ const DeviceNr = 23
 // GetDevice returns the pre-configured speaker alsa device
 func GetDevice() tinyalsa.AlsaDevice {
 	return tinyalsa.NewDevice(CardNr, DeviceNr, pcm.Config{
-		Channels:    1,
+		Channels:    2,
 		SampleRate:  48000,
 		PeriodSize:  1024,
 		PeriodCount: 2,
