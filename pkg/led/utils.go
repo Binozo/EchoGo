@@ -39,3 +39,18 @@ func Fun() error {
 	}
 	return nil
 }
+
+// LedPercent lights the LEDs respecting the percentual value
+func LedPercent(percent float64) error {
+	totalPercentPerLed := 1.0 / LedCount
+	targetMaxLED := (percent / totalPercentPerLed) - 1
+	for i := 0; i < int(targetMaxLED); i++ {
+		err := SetColor(i, 255, 255, 255)
+		if err != nil {
+			return err
+		}
+	}
+	targetLedOpacity := totalPercentPerLed / (percent - ((targetMaxLED - 1) * totalPercentPerLed))
+	opacity := int(255 * targetLedOpacity)
+	return SetColor(int(targetMaxLED), opacity, opacity, opacity)
+}
