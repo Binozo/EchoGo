@@ -65,7 +65,9 @@ EOT
 
   echo "Starting Service"
   systemctl start echogo
-  # journalctl -u echogo --no-pager -f # for debugging
+  echo "Started Service. Now you will get live logs. You can always ^C out"
+  sleep 1 # give some time to read
+  journalctl -u echogo --no-pager -f
 }
 
 askInstall () {
@@ -90,11 +92,8 @@ echo "Waiting for Device to come online..."
 adb wait-for-device
 echo "Uploading your executable..."
 adb push $targetWorkingDir/$executableFileName /data/local/tmp/echogo
-echo "Waiting until WiFi is available..."
-while [ "$(hostname -I)" = "" ]; do
-  echo -e "\e[1A\e[KNo network: $(date)"
-  sleep 1
-done
+echo "Waiting some time before Alexa's internals are ready"
+sleep 20
 echo "Starting your executable..."
 adb shell "chmod +x /data/local/tmp/echogo"
 
