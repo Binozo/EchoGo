@@ -13,9 +13,6 @@ Make sure you preserve your `preloader_no_hdr.bin` file. You need it for booting
 > [!TIP]
 > Make sure you blocked Amazon's OTA servers. [More info](https://github.com/Dragon863/EchoCLI#notice)
 
-> [!NOTE]
-> Your Echo Dot may not connect to your Wi-Fi network on its own
-
 Now you need a host system for your Echo because it can't live on its own.
 In this example, we are using a Raspberry Pi Zero 2 W.
 
