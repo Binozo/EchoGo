@@ -73,9 +73,14 @@ Run the following commands:
 ```shell
 $ docker run -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
 ```
-> [!NOTE]
-> Your entry `main()` function must be in `cmd/main.go`
 
+> [!NOTE]
+> By default the compiler tries to compile `cmd/main.go`
+
+If you want to compile another target in the `cmd` directory you can pass an environment variable like this:
+```shell
+$ docker run --env TARGET="my_go_file.go" -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
+```
 
 This will generate the `main` executable file in the `build` directory.
 
