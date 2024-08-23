@@ -18,6 +18,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	err = led.Clear()
+	if err != nil {
+		panic(err)
+	}
 	err = buttons.Init()
 	if err != nil {
 		panic(err)
