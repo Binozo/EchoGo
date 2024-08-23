@@ -57,11 +57,15 @@ EOT
   echo "Building mtkclient..."
   apt install -y python3 git libusb-1.0-0 python3-pip adb
   cd "$targetWorkingDir/"
-  git clone --depth 1 --branch 1.52 https://github.com/bkerler/mtkclient.git
+  git clone https://github.com/bkerler/mtkclient.git
   cd mtkclient
   pip3 install -r requirements.txt
-  python3 setup.py build
-  python3 setup.py install
+  pip3 install .
+  # Install rules
+  usermod -a -G plugdev $USER
+  usermod -a -G dialout $USER
+  cp mtkclient/Setup/Linux/*.rules /etc/udev/rules.d
+  udevadm control -R
 
   echo "Starting Service"
   systemctl start echogo
@@ -92,8 +96,6 @@ echo "Waiting for Device to come online..."
 adb wait-for-device
 echo "Uploading your executable..."
 adb push $targetWorkingDir/$executableFileName /data/local/tmp/echogo
-echo "Waiting some time before Alexa's internals are ready"
-sleep 20
 echo "Starting your executable..."
 adb shell "chmod +x /data/local/tmp/echogo"
 
