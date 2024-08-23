@@ -1,8 +1,9 @@
-FROM echogosdkcompiler:latest
+FROM ghcr.io/binozo/echogosdkcompiler:latest
 
 ENV TARGET=armv7l-linux-gnueabi
 
 # Install some dependencies
+RUN apt-get update
 RUN apt-get install autoconf libtool build-essential flex bison -y
 
 # Build strace
