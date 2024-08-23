@@ -15,13 +15,9 @@ func main() {
 		panic(err)
 	}
 
-	buttons.ListenForVolumeButtons(func() {
-		// Up
-		led.SetColorAll(0, 255, 0)
-	}, func() {
-		// Down
-		led.SetColorAll(255, 0, 0)
-	})
+	dotBtn := buttons.GetDotButton()
+	fmt.Println("Waiting for dot button press")
+	dotBtn.WaitForClick()
 
 	// Init LEDs
 	if err := led.Init(); err != nil {
