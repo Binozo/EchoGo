@@ -54,3 +54,27 @@ func (b *Button) WaitForClickRelease() (ClickType, error) {
 		return clickType, nil
 	}
 }
+
+func (b *Button) ListenForEvents() chan ClickEvent {
+	eventChan := make(chan ClickEvent)
+
+	go func() {
+		defer recover() // Recover panic from closed channel
+		for {
+			inputEvent, err := listenForButtonClick(b.internalName)
+			if err != nil {
+				close(eventChan)
+				return
+			}
+
+			clickEvent := ClickEvent{
+				Button:    b,
+				Down:      inputEvent.Value == 1,
+				ClickType: ClickType(inputEvent.Code),
+			}
+			eventChan <- clickEvent
+		}
+	}()
+
+	return eventChan
+}
