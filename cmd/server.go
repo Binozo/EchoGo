@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/Binozo/EchoGoSDK/internal/server"
-	"github.com/Binozo/EchoGoSDK/pkg/buttons"
-	"github.com/Binozo/EchoGoSDK/pkg/led"
-	"github.com/Binozo/EchoGoSDK/pkg/mic"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
+	led2 "github.com/Binozo/EchoGoSDK/pkg/bindings/led"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/mic"
 	"log"
 )
 
@@ -14,11 +14,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = led.Init()
+	err = led2.Init()
 	if err != nil {
 		panic(err)
 	}
-	err = led.Clear()
+	err = led2.Clear()
 	if err != nil {
 		panic(err)
 	}

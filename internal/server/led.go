@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGoSDK/pkg/led"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/led"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"

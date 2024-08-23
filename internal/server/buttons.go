@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGoSDK/pkg/buttons"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
 	"log"
 	"net/http"
 )
