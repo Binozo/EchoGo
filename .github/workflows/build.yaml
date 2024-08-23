@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build-compiler:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,3 +31,17 @@ jobs:
 
       - name: Push Go compiler image
         run: docker push ghcr.io/binozo/echogo:latest
+
+  build-server:
+    runs-on: ubuntu-latest
+    needs: build-compiler
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build server
+        run: docker run --env TARGET="server.go" -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Server
+          path: build/main
+          retention-days: 7
