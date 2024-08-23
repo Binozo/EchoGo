@@ -1,5 +1,7 @@
 github.com/Binozo/GoTinyAlsa v1.0.3 h1:Q66oFQGuov2mtUzB96s2Ieu7PdvfAJ+WjNkiFVppfc0=
 github.com/Binozo/GoTinyAlsa v1.0.3/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
+github.com/electricbubble/gadb v0.1.0 h1:h7RKlToMlFtGW4rUkAd4GSiFAHioMH5Nx7jtbb2nKi4=
+github.com/electricbubble/gadb v0.1.0/go.mod h1:3293YJ6OWHv/Q6NA5dwSbK43MbmYm8+Vz2d7h5J3IA8=
 github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
 github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
