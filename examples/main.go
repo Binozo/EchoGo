@@ -3,9 +3,9 @@ package examples
 import (
 	"bytes"
 	"fmt"
-	"github.com/Binozo/EchoGoSDK/pkg/buttons"
-	"github.com/Binozo/EchoGoSDK/pkg/led"
-	"github.com/Binozo/EchoGoSDK/pkg/mic"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/led"
+	"github.com/Binozo/EchoGoSDK/pkg/bindings/mic"
 	"time"
 )
 
