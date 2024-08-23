@@ -21,6 +21,7 @@ func Serve() error {
 
 	r.HandleFunc("/buttons", buttonHandler)
 	r.HandleFunc("/microphone", micHandler)
+	r.HandleFunc("/speaker", speakerHandler)
 
 	http.Handle("/", r)
 	return http.ListenAndServe(fmt.Sprintf(":%d", Port), r)
