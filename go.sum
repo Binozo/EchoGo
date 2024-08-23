@@ -1,10 +1,8 @@
-github.com/Binozo/GoTinyAlsa v1.0.0 h1:T+HfB3egL3u2PLHwJWfLcS5OcmfjjddZxl3TLlYMkJM=
-github.com/Binozo/GoTinyAlsa v1.0.0/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
-github.com/Binozo/GoTinyAlsa v1.0.1 h1:m3D6IfqTD76iFHSqfllhdPOonsaY3+pp8VDFfAglxzM=
-github.com/Binozo/GoTinyAlsa v1.0.1/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
-github.com/Binozo/GoTinyAlsa v1.0.2 h1:IpPA9hAvqunkggez72qPK8GsELEE0rH4wnKX+MJkvgY=
-github.com/Binozo/GoTinyAlsa v1.0.2/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
 github.com/Binozo/GoTinyAlsa v1.0.3 h1:Q66oFQGuov2mtUzB96s2Ieu7PdvfAJ+WjNkiFVppfc0=
 github.com/Binozo/GoTinyAlsa v1.0.3/go.mod h1:IWSQhPPdCG+QCUAV/wRzY/FLP0IcccOBSz0nXBG1qiE=
+github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
+github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
+github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
+github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/gvalkov/golang-evdev v0.0.0-20220815104727-7e27d6ce89b6 h1:K9b8efT9f1NkITNgNAm2A1LuoamhG4pAhXVjz5Sfa5Q=
 github.com/gvalkov/golang-evdev v0.0.0-20220815104727-7e27d6ce89b6/go.mod h1:SAzVFKCRezozJTGavF3GX8MBUruETCqzivVLYiywouA=
