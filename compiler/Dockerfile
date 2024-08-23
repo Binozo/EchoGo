@@ -73,7 +73,7 @@ WORKDIR /tinyalsa
 RUN make
 RUN make install
 RUN ldconfig
-# Now we need to build the shared library (libtinyalsa.so
+# Now we need to build the shared library (libtinyalsa.so)
 WORKDIR /tinyalsa/src
 # In order to link it correctly we modify the Makefile a bit
 # (We need a library with any version number after .so)
