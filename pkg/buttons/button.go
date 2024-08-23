@@ -13,6 +13,19 @@ const (
 	VolumeDownClick ClickType = 114
 )
 
+func (c *ClickType) String() string {
+	switch *c {
+	case DotClick:
+		return "dot"
+	case VolumeUpClick:
+		return "volume_up"
+	case VolumeDownClick:
+		return "volume_down"
+	default:
+		return "unknown"
+	}
+}
+
 func GetDotButton() *Button {
 	return &Button{
 		dotButton,
