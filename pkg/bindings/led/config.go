@@ -1,6 +1,6 @@
 package led
 
-import "github.com/Binozo/EchoGoSDK/pkg/constants"
+import "github.com/Binozo/EchoGo/pkg/constants"
 
 var leds []Led
 

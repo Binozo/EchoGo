@@ -2,7 +2,7 @@ package server
 
 import (
 	"fmt"
-	"github.com/Binozo/EchoGoSDK/pkg/constants"
+	"github.com/Binozo/EchoGo/pkg/constants"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
 	"net/http"

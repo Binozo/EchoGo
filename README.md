@@ -180,7 +180,7 @@ This example app will boot your echo and run some example code. Take a look here
 ## Go Quickstart
 ### Install the package
 ```shell
-$ go get -u github.com/Binozo/EchoGoSDK
+$ go get -u github.com/Binozo/EchoGo
 ```
 
 ### [NATIVE] Example code
@@ -190,9 +190,9 @@ package examples
 import (
   "bytes"
   "fmt"
-  "github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
-  "github.com/Binozo/EchoGoSDK/pkg/bindings/led"
-  "github.com/Binozo/EchoGoSDK/pkg/bindings/mic"
+  "github.com/Binozo/EchoGo/pkg/bindings/buttons"
+  "github.com/Binozo/EchoGo/pkg/bindings/led"
+  "github.com/Binozo/EchoGo/pkg/bindings/mic"
   "time"
 )
 
