@@ -46,6 +46,7 @@ func main() {
 	ledCtrl.Close()
 
 	// Debug Button listener
+	log.Println("Click the dot button to continue")
 	btnCtrl, err := alexa.GetButtonListener()
 	if err != nil {
 		log.Println("Couldn't access buttons")
