@@ -1,5 +1,7 @@
 package led
 
+import "github.com/Binozo/EchoGoSDK/pkg/constants"
+
 // Clear all LEDs and turn them off
 func Clear() error {
 	return SetColorAll(0, 0, 0)
@@ -27,10 +29,10 @@ func Fun() error {
 	}
 
 	for {
-		for j := 0; j < LedCount; j++ {
-			for i := 0; i < LedCount; i++ {
+		for j := 0; j < constants.LedCount; j++ {
+			for i := 0; i < constants.LedCount; i++ {
 				color := colors[i]
-				err := SetColor((i+j)%LedCount, color.red, color.green, color.blue)
+				err := SetColor((i+j)%constants.LedCount, color.red, color.green, color.blue)
 				if err != nil {
 					return err
 				}
@@ -42,7 +44,7 @@ func Fun() error {
 
 // LedPercent lights the LEDs respecting the percentual value
 func LedPercent(percent float64) error {
-	totalPercentPerLed := 1.0 / LedCount
+	totalPercentPerLed := 1.0 / constants.LedCount
 	targetMaxLED := (percent / totalPercentPerLed) - 1
 	for i := 0; i < int(targetMaxLED); i++ {
 		err := SetColor(i, 255, 255, 255)
