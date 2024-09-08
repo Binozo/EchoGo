@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGo/pkg/bindings/speaker"
+	"github.com/Binozo/EchoGo/v2/pkg/bindings/speaker"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"

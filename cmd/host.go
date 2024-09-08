@@ -2,7 +2,7 @@ package main
 
 import (
 	"errors"
-	"github.com/Binozo/EchoGo/pkg/client/echohost"
+	"github.com/Binozo/EchoGo/v2/pkg/client/echohost"
 	"log"
 	"os"
 )

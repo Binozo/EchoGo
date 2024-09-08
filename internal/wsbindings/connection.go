@@ -2,7 +2,7 @@ package wsbindings
 
 import (
 	"fmt"
-	"github.com/Binozo/EchoGo/pkg/constants"
+	"github.com/Binozo/EchoGo/v2/pkg/constants"
 	"github.com/gorilla/websocket"
 )
 

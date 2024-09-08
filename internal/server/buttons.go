@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGo/internal/payloads"
-	"github.com/Binozo/EchoGo/pkg/bindings/buttons"
+	"github.com/Binozo/EchoGo/v2/internal/payloads"
+	"github.com/Binozo/EchoGo/v2/pkg/bindings/buttons"
 	"log"
 	"net/http"
 )

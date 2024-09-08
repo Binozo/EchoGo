@@ -2,9 +2,9 @@ package echohost
 
 import (
 	"errors"
-	"github.com/Binozo/EchoGo/internal/mtk"
-	"github.com/Binozo/EchoGo/internal/wsbindings"
-	"github.com/Binozo/EchoGo/pkg/constants"
+	"github.com/Binozo/EchoGo/v2/internal/mtk"
+	"github.com/Binozo/EchoGo/v2/internal/wsbindings"
+	"github.com/Binozo/EchoGo/v2/pkg/constants"
 	"github.com/electricbubble/gadb"
 	"log"
 	"os"
