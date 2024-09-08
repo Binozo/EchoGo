@@ -5,6 +5,7 @@ import (
 	"github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
 	"github.com/Binozo/EchoGoSDK/pkg/bindings/led"
 	"github.com/Binozo/EchoGoSDK/pkg/bindings/mic"
+	"github.com/Binozo/EchoGoSDK/pkg/constants"
 	"log"
 )
 
@@ -26,7 +27,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Listening on", server.Port)
+	log.Println("Listening on", constants.Port)
 
 	err = server.Serve()
 	if err != nil {
