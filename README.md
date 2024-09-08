@@ -144,7 +144,8 @@ Prerequisites:
 
 Pull this repository:
 ```bash
-$ git pull --recurse-submodules https://github.com/Binozo/EchoGo
+$ git clone https://github.com/Binozo/EchoGo && cd EchoGo 
+$ git submodule init && git submodule update
 ```
 
 Follow the official guide [here](https://github.com/bkerler/mtkclient/tree/f338168caba2b100eca85e5e8dfcea78cb27f1e2?tab=readme-ov-file#install) until 'Grab files' (Only install system dependencies)
@@ -162,7 +163,7 @@ Get back to the project's root directory and run the following command to build 
 ```bash
 $ docker run --env TARGET="server.go" -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
 ```
-This may take a while. The host app will be placed in the `build` directory. Run `cp build/main server` to place it correctly.
+This may take a while. The host app will be placed in the `build` directory. Run `cp build/main host` to place it correctly.
 
 Finally build the host app:
 ```bash
@@ -170,7 +171,7 @@ $ go build -o app cmd/host.go
 ```
 Now also place your music file (named `music.wav`) in this root directory.
 
-Run 🚀🥳:
+Run 🥳 🚀:
 ```bash
 $ ./app
 ```
