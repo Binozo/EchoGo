@@ -1,15 +1,12 @@
 package led
 
-const ledCount = 13
-
-// LedCount Defines how many LEDs are available
-const LedCount = ledCount - 1
+import "github.com/Binozo/EchoGoSDK/pkg/constants"
 
 var leds []Led
 
 func init() {
-	leds = make([]Led, ledCount)
-	for i := 0; i < ledCount; i++ {
+	leds = make([]Led, constants.LedCount+1)
+	for i := 0; i <= constants.LedCount; i++ {
 		leds[i] = Led{
 			Nr: i,
 			R:  0,
