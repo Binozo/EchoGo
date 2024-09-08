@@ -2,12 +2,11 @@ package server
 
 import (
 	"fmt"
+	"github.com/Binozo/EchoGoSDK/pkg/constants"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
 	"net/http"
 )
-
-const Port = 8092
 
 var upgrader = websocket.Upgrader{} // use default options
 
@@ -25,5 +24,5 @@ func Serve() error {
 	r.HandleFunc("/led", ledHandler)
 
 	http.Handle("/", r)
-	return http.ListenAndServe(fmt.Sprintf(":%d", Port), r)
+	return http.ListenAndServe(fmt.Sprintf(":%d", constants.Port), r)
 }
