@@ -1,6 +1,14 @@
 # EchoGo
 An SDK for your Echo Dot **2. Gen**
 
+- [Features](#-features)
+- [Requirements](#-requirements)
+- [Development](#-Development)
+- - [Bare metal](#native--development)
+- - [Remote host controlled](#host--development)
+- [Deployment](#-deployment)
+- [Go example](#go-quickstart)
+
 ## ⚡ Features
 - 🚥 Full control over LEDs
 - 🎤 Access to microphone, speaker and buttons
