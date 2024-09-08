@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Binozo/EchoGoSDK/internal/payloads"
 	"github.com/Binozo/EchoGoSDK/pkg/bindings/buttons"
 	"log"
 	"net/http"
@@ -22,12 +23,12 @@ func buttonHandler(w http.ResponseWriter, r *http.Request) {
 	defer close(volumeBtnChan)
 
 	notifyClickEvent := func(event buttons.ClickEvent) error {
-		jsonMsg := map[string]interface{}{
-			"button": event.Button.Type,
-			"down":   event.Down,
-			"type":   event.ClickType.String(),
+		payload := payloads.ClickEvent{
+			Button: event.Button.Type,
+			Down:   event.Down,
+			Type:   event.ClickType.String(),
 		}
-		return c.WriteJSON(jsonMsg)
+		return c.WriteJSON(payload)
 	}
 
 	for {

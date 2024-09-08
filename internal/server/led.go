@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Binozo/EchoGoSDK/internal/payloads"
 	"github.com/Binozo/EchoGoSDK/pkg/bindings/led"
 	"github.com/gorilla/websocket"
 	"log"
@@ -16,23 +17,15 @@ func ledHandler(w http.ResponseWriter, r *http.Request) {
 	defer c.Close()
 
 	for {
+		var ledPayload payloads.LedsPayload
 
-		var jsonPayload struct {
-			Leds []struct {
-				Led int `json:"led"`
-				R   int `json:"r"`
-				G   int `json:"g"`
-				B   int `json:"b"`
-			} `json:"leds"`
-		}
-
-		err := c.ReadJSON(&jsonPayload)
+		err := c.ReadJSON(&ledPayload)
 		if err != nil {
 			c.WriteMessage(websocket.TextMessage, []byte(err.Error()))
 			return
 		}
 
-		for _, curLed := range jsonPayload.Leds {
+		for _, curLed := range ledPayload.Leds {
 			led.SetColor(curLed.Led, curLed.R, curLed.G, curLed.B)
 		}
 	}
