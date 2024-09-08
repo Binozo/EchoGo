@@ -138,7 +138,7 @@ Prerequisites:
 - Your own `preloader_no_hdr.bin` file for booting
 - A music file by your choice
 
-> [!INFO]
+> [!TIP]
 > You need that music file in a specific format. Here is a ffmpeg snippet that converts it right:
 > `ffmpeg -i music.mp3 -ar 48000 -ac 2 -volumedetect -af "volume=0.5" -f s16le music.wav` (2 Channel 48kHz S16_LE )
 
