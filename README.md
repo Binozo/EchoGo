@@ -177,38 +177,13 @@ $ ./app
 ```
 This example app will boot your echo and run some example code. Take a look here: `cmd/host.go:35` to get started 😎
 
-
-Now you need a host system for your Echo because it can't live on its own.
-In this example, we are using a Raspberry Pi Zero 2 W.
-Make sure your app executable is named `echogo`.
-    
-Now copy the following 3 files into the home directory of your Raspberry Pi (`/home/pi/`):
-- The `preloader_no_hdr.bin` file for booting
-- The `boot.sh` file from this repository for installation ([Link](https://github.com/Binozo/EchoGoSDK/raw/master/boot.sh))
-- Your `echogo` executable
-
-SSH into your Pi's home directory and execute:
-```shell
-pi@raspberrypi:~ $ chmod +x boot.sh
-pi@raspberrypi:~ $ sudo ./boot.sh
-```
-
-This will setup everything for you. The `boot.sh` script moves itself and the 2 other files you copied into `/opt/echogo/` and creates a systemd service.
-The systemd service runs automatically and boots your Echo Dot including the Go executable you created.
-
-> [!TIP]
-> If you want to update your Go executable, just replace the `/opt/echogo/echogo` binary on your Pi.
- 
-> [!TIP]
-> You can always run `journalctl -u echogo --no-pager -f` to view logs.
-
 ## Go Quickstart
 ### Install the package
 ```shell
 $ go get -u github.com/Binozo/EchoGoSDK
 ```
 
-### Example code
+### [NATIVE] Example code
 ```go
 package examples
 
