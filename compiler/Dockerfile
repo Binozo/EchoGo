@@ -1,6 +1,6 @@
 FROM golang:1.23.1
 
-LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGoSDK"
+LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGo"
 
 # Base setup
 WORKDIR /

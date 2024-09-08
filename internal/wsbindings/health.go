@@ -2,7 +2,7 @@ package wsbindings
 
 import (
 	"fmt"
-	"github.com/Binozo/EchoGoSDK/pkg/constants"
+	"github.com/Binozo/EchoGo/pkg/constants"
 	"net/http"
 )
 

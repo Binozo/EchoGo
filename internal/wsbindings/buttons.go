@@ -1,7 +1,7 @@
 package wsbindings
 
 import (
-	"github.com/Binozo/EchoGoSDK/internal/payloads"
+	"github.com/Binozo/EchoGo/internal/payloads"
 	"time"
 )
 

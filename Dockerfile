@@ -3,7 +3,7 @@ FROM ghcr.io/binozo/echogosdkcompiler:latest
 # Target file for compilation. Your main fun needs to be there
 ENV TARGET="main.go"
 
-LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGoSDK"
+LABEL org.opencontainers.image.source = "https://github.com/Binozo/EchoGo"
 
 # Compile our stuff
 WORKDIR /EchoGoSDK
