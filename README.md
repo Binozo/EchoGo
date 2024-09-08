@@ -30,17 +30,17 @@ Pros/Cons about the [HOST] way:
 | Easy to develop and build | Is "remote controlling"                            |
 | Much better flexibility   | Is limited by the api and can't be extended easily |
 
-### [NATIVE]
+## [NATIVE] ⚙️ Development
 Develop using this strategy if you want to run your app 'bare metal'.
 This required using cgo and the specified compiler but grants you much more control.
 
 In this case you may need a direct Wi-Fi connection between your echo and your Wi-Fi network.
 Please make sure you blocked Amazon's OTA servers, otherwise your echo will almost brick itself after a few weeks through OTA updates (already experienced that myself).  [More info](https://github.com/Dragon863/EchoCLI#notice)
 
-#### The prebuilt compiler
+### The prebuilt compiler
 Either use the prebuilt compiler or build it yourself.
 
-##### Building it yourself
+#### Building it yourself
 Please note: Building the compiler will take a _long_ time.
 ```shell
 $ git clone https://github.com/Binozo/EchoGo && cd EchoGo
@@ -48,13 +48,13 @@ $ docker build -f compiler/Dockerfile -t echogosdkcompiler:latest .
 $ docker build -t ghcr.io/binozo/echogo:latest .
 ```
 
-##### Pull the prebuilt image
+#### Pull the prebuilt image
 Run the following commands:
 ```shell
 $ docker pull ghcr.io/binozo/echogo:latest
 ```
 
-#### Compilation
+### Compilation
 Run the following command:
 ```shell
 $ docker run -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
@@ -73,7 +73,7 @@ This will generate the `main` executable file in the `build` directory.
 Now jump to the deployment step.
 
 
-### [HOST]
+## [HOST] 🖥️️ Development
 By using this strategy you build your application in a way that it runs on the host machine which then remotely controls the echo.
 So there is no need for a complex compiling process nor for cgo.
 
@@ -120,9 +120,6 @@ Those routes are available:
     ]
 }
 ```
-
-
-Go library + host app WORK IN PROGRESS 🧑‍💻
 
 ## 🚀 Deployment
 (This section will be rewritten soon)
