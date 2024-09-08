@@ -1,13 +1,15 @@
 # EchoGo
-An SDK for your Echo Dot **2. Gen**
+A Go SDK for your Echo Dot **2. Gen**
 
 - [Features](#-features)
 - [Requirements](#-requirements)
 - [Development](#-Development)
 - - [Bare metal](#native--development)
 - - [Remote host controlled](#host--development)
-- [Deployment](#-deployment)
+- [Deployment](#-deployment) (Full tutorial)
 - [Go example](#go-quickstart)
+
+For a very quick quickstart (🚀🚀🚀) take a look at [Deployment](#-deployment)
 
 ## ⚡ Features
 - 🚥 Full control over LEDs
@@ -49,7 +51,7 @@ Please make sure you blocked Amazon's OTA servers, otherwise your echo will almo
 Either use the prebuilt compiler or build it yourself.
 
 #### Building it yourself
-Please note: Building the compiler will take a _long_ time.
+Please note: Building the compiler will take a some time.
 ```shell
 $ git clone https://github.com/Binozo/EchoGo && cd EchoGo
 $ docker build -f compiler/Dockerfile -t echogosdkcompiler:latest .
@@ -130,7 +132,50 @@ Those routes are available:
 ```
 
 ## 🚀 Deployment
-(This section will be rewritten soon)
+This section will help you to get an example project up and running on your echo 😎
+
+Prerequisites:
+- Your own `preloader_no_hdr.bin` file for booting
+- A music file by your choice
+
+> [!INFO]
+> You need that music file in a specific format. Here is a ffmpeg snippet that converts it right:
+> `ffmpeg -i music.mp3 -ar 48000 -ac 2 -volumedetect -af "volume=0.5" -f s16le music.wav` (2 Channel 48kHz S16_LE )
+
+Pull this repository:
+```bash
+$ git pull --recurse-submodules https://github.com/Binozo/EchoGo
+```
+
+Follow the official guide [here](https://github.com/bkerler/mtkclient/tree/f338168caba2b100eca85e5e8dfcea78cb27f1e2?tab=readme-ov-file#install) until 'Grab files' (Only install system dependencies)
+Now build mtkclient for booting:
+```bash
+$ cd mtkclient
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ pip3 install -r requirements.txt
+$ pip3 install .
+```
+Now as a last step you need to set [those](https://github.com/bkerler/mtkclient/tree/f338168caba2b100eca85e5e8dfcea78cb27f1e2?tab=readme-ov-file#install-rules) rules.
+
+Get back to the project's root directory and run the following command to build the echo's server app:
+```bash
+$ docker run --env TARGET="server.go" -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
+```
+This may take a while. The host app will be placed in the `build` directory. Run `cp build/main server` to place it correctly.
+
+Finally build the host app:
+```bash
+$ go build -o app cmd/host.go
+```
+Now also place your music file (named `music.wav`) in this root directory.
+
+Run 🚀🥳:
+```bash
+$ ./app
+```
+This example app will boot your echo and run some example code. Take a look here: `cmd/host.go:35` to get started 😎
+
 
 Now you need a host system for your Echo because it can't live on its own.
 In this example, we are using a Raspberry Pi Zero 2 W.
