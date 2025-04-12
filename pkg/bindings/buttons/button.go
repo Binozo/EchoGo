@@ -1,16 +1,20 @@
 package buttons
 
+type ButtonType string
+
 type Button struct {
 	internalName string
-	Type         string
+	Type         ButtonType
 }
 
 type ClickType uint16
 
 const (
-	DotClick        ClickType = 138
-	VolumeUpClick   ClickType = 115
-	VolumeDownClick ClickType = 114
+	DotClick        ClickType  = 138
+	VolumeUpClick   ClickType  = 115
+	VolumeDownClick ClickType  = 114
+	DotButton       ButtonType = "Dot"
+	VolumeButton    ButtonType = "Volume"
 )
 
 func (c *ClickType) String() string {
@@ -23,19 +27,5 @@ func (c *ClickType) String() string {
 		return "volume_down"
 	default:
 		return "unknown"
-	}
-}
-
-func GetDotButton() *Button {
-	return &Button{
-		dotButton,
-		"Dot",
-	}
-}
-
-func GetVolumeButton() *Button {
-	return &Button{
-		volumeButtons,
-		"Volume",
 	}
 }
