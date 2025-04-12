@@ -1,14 +1,14 @@
 package led
 
-import "github.com/Binozo/EchoGo/v2/pkg/constants"
+const ledCount = 12
 
 var leds []Led
 
 func init() {
-	leds = make([]Led, constants.LedCount+1)
-	for i := 0; i <= constants.LedCount; i++ {
+	leds = make([]Led, ledCount)
+	for i := 0; i < ledCount; i++ {
 		leds[i] = Led{
-			Nr: i,
+			ID: i,
 			R:  0,
 			G:  0,
 			B:  0,

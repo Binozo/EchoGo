@@ -30,12 +30,13 @@ func TestLed_BuildArgument(t *testing.T) {
 
 func TestLed_SetColor(t *testing.T) {
 	for i := 0; i < 256; i++ {
-		expected := Led{R: i, G: i, B: i}
+		hexI := uint8(i)
+		expected := Led{R: hexI, G: hexI, B: hexI}
 		led := Led{}
-		led.SetColor(i, i, i)
+		led.SetColor(hexI, hexI, hexI)
 
 		if led != expected {
-			t.Errorf("led.SetColor(%d, %d, %d) != Led{R: %d, G: %d, B: %d}", i, i, i, i, i, i)
+			t.Errorf("led.SetColor(%d, %d, %d) != Led{R: %d, G: %d, B: %d}", hexI, hexI, hexI, hexI, hexI, hexI)
 		}
 	}
 }
