@@ -7,13 +7,13 @@ import (
 
 type Led struct {
 	// Specifies the target LED on the Echo Dot. Ranges between 0 and 11 (12 LEDs).
-	ID int
+	ID int `json:"id"`
 	// R color value of the LED
-	R uint8
+	R uint8 `json:"r"`
 	// G color value of the LED
-	G uint8
+	G uint8 `json:"g"`
 	// B color value of the LED
-	B uint8
+	B uint8 `json:"b"`
 }
 
 const format = "%02X"

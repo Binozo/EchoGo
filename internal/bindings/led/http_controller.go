@@ -1,0 +1,53 @@
+package led
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"github.com/Binozo/EchoGo/v2/internal"
+	"net/http"
+)
+
+type HttpController struct {
+	baseUrl string
+}
+
+func NewDefaultHttpController() *HttpController {
+	return NewHttpController(fmt.Sprintf("http://localhost:%d", internal.Port))
+}
+
+func NewHttpController(baseUrl string) *HttpController {
+	return &HttpController{
+		baseUrl: baseUrl,
+	}
+}
+
+func (h *HttpController) Init() error {
+	return nil // Server already init LEDs
+}
+
+func (h *HttpController) GetNumLEDs() (int, error) {
+	return len(leds), nil
+}
+
+func (h *HttpController) SetLEDs(led ...Led) error {
+	body, err := json.Marshal(led)
+	if err != nil {
+		return err
+	}
+	fmt.Println("Sending to", fmt.Sprintf("%s/leds/set", h.baseUrl))
+	r, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/leds/set", h.baseUrl), bytes.NewBuffer(body))
+	if err != nil {
+		return err
+	}
+
+	r.Header.Set("Content-Type", "application/json")
+
+	resp, err := http.DefaultClient.Do(r)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	// TODO: Better error handling?
+	return nil
+}
