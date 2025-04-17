@@ -107,4 +107,4 @@ RUN cp -r /usr/local/include/tinyalsa/ /usr/include/ && \
 # Finished preparing our compiler
 
 WORKDIR /sdk
-CMD [ "go", "build", "-o", "build/server", "cmd/server.go" ]
+CMD [ "go", "build", "-tags='server'", "-o", "build/server", "cmd/server.go" ]
