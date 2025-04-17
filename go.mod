@@ -1,6 +1,6 @@
 module github.com/Binozo/EchoGo/v2
 
-go 1.23.1
+go 1.24.0
 
 require (
 	github.com/Binozo/GoTinyAlsa v1.0.3
