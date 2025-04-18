@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Binozo/EchoGo/v2/internal"
+	"io"
 	"net/http"
 )
 
@@ -35,7 +36,6 @@ func (h *HttpController) SetLEDs(led ...Led) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("Sending to", fmt.Sprintf("%s/leds/set", h.baseUrl))
 	r, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/leds/set", h.baseUrl), bytes.NewBuffer(body))
 	if err != nil {
 		return err
@@ -48,6 +48,9 @@ func (h *HttpController) SetLEDs(led ...Led) error {
 		return err
 	}
 	defer resp.Body.Close()
-	// TODO: Better error handling?
+	_, err = io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
 	return nil
 }
