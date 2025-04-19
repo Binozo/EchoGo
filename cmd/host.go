@@ -1,91 +1,115 @@
 package main
 
 import (
-	"errors"
-	"github.com/Binozo/EchoGo/v2/pkg/client/echohost"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
+	"github.com/Binozo/EchoGo/v2/pkg/echo"
 	"log"
 	"os"
+	"time"
 )
 
 func main() {
+	log.SetOutput(os.Stdout)
 	log.Println("Starting up...")
 
-	alexa, err := echohost.NewAlexa()
+	alexa, err := echo.New()
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatal(err)
 	}
-	log.Println("Checking connection")
-	connected, err := alexa.IsConnected()
-	if err != nil && !errors.Is(err, echohost.ErrAlexaNotConnected) {
-		log.Fatalln(err)
+
+	isOnline, err := alexa.IsOnline()
+	if err != nil {
+		log.Fatal(err)
 	}
-	if !connected {
-		log.Println("Not connected, booting...")
-		if err = alexa.Boot(); err != nil {
-			log.Fatalln(err)
+
+	if !isOnline {
+		log.Println("Alexa is not online. Booting...")
+		if err = alexa.Boot(echo.DefaultPreloaderPath); err != nil {
+			log.Fatal(err)
+		}
+		log.Println("Deploying server app to alexa...")
+		if err = alexa.Deploy(echo.DefaultServerPath); err != nil {
+			log.Fatal(err)
+		}
+		log.Println("Bootup completed")
+	} else {
+		log.Println("Alexa is already online")
+
+		// Check if server is online
+		if err = alexa.Ping(); err != nil {
+			log.Println("Server is not reachable. Starting...")
+			if err = alexa.Deploy(echo.DefaultServerPath); err != nil {
+				log.Fatal(err)
+			}
+			time.Sleep(time.Second)
 		}
 	}
-	log.Println("Built connection with alexa")
-	log.Println("Deploying server")
-	if err = alexa.DeployServer(); err != nil {
-		log.Fatalln(err)
-	}
-	log.Println("Remote server up and running")
 
-	///////// Your code here /////////
-	// Debug Light
-	ledCtrl, err := alexa.GetLedControl()
-	if err != nil {
-		log.Println("Couldn't access led control")
-		log.Fatalln(err)
-	}
-	if err = ledCtrl.SetColor(0, 255, 0); err != nil {
-		log.Println("Couldn't set led")
-		log.Fatalln(err)
-	}
-	ledCtrl.Close()
-
-	// Debug Button listener
-	log.Println("Click the dot button to continue")
-	btnCtrl, err := alexa.GetButtonListener()
-	if err != nil {
-		log.Println("Couldn't access buttons")
-		log.Fatalln(err)
-	}
-	event, err := btnCtrl.WaitForClickEvent()
-	if err != nil {
-		log.Println("Couldn't wait for click")
-		log.Fatalln(err)
-	}
-	log.Println("Received click event:", event.String())
-	btnCtrl.Close()
-
-	speakerControl, err := alexa.GetSpeakerControl()
-	if err != nil {
-		log.Println("Couldn't access speaker control")
-		log.Fatalln(err)
-	}
-
-	// This specific operation is non-blocking
-	// Your wav file MUST be in 48000kHz 2 channel S16_LE format otherwise your ears will suffer
-	myWavFile, _ := os.ReadFile("music.wav")
-	if err = speakerControl.Write(myWavFile); err != nil {
-		log.Println("Couldn't write speaker control")
-		log.Fatalln(err)
-	}
-
-	// Listen mic
-	// Keep in mind that you get raw pcm data with 9 channels, 16kHz and S24_3LE format
-	micCtrl, err := alexa.GetMicListener()
-	if err != nil {
-		log.Println("Couldn't access mic")
-		log.Fatalln(err)
-	}
-	for {
-		read, err := micCtrl.Read()
-		if err != nil {
-			panic(err)
+	btn := alexa.GetButtonController()
+	ledController := alexa.GetLedController()
+	btnSub, err := btn.SubscribeToButton(func(clickEvent buttons.ButtonClickEvent) {
+		color := uint8(255)
+		if !clickEvent.Down {
+			color = uint8(0)
 		}
-		log.Println("Read", len(read), "bytes from alexa microphone")
+		switch clickEvent.ClickType {
+		case buttons.DotClick:
+			err := ledController.SetLEDs(led.Led{
+				ID: 7,
+				R:  color,
+				G:  color,
+				B:  color,
+			}, led.Led{
+				ID: 8,
+				R:  color,
+				G:  color,
+				B:  color,
+			})
+			if err != nil {
+				log.Fatal(err)
+			}
+			break
+		case buttons.VolumeUpClick:
+			err := ledController.SetLEDs(led.Led{
+				ID: 4,
+				R:  color,
+				G:  color,
+				B:  color,
+			}, led.Led{
+				ID: 5,
+				R:  color,
+				G:  color,
+				B:  color,
+			})
+			if err != nil {
+				log.Fatal(err)
+			}
+			break
+		case buttons.VolumeDownClick:
+			err := ledController.SetLEDs(led.Led{
+				ID: 11,
+				R:  color,
+				G:  color,
+				B:  color,
+			}, led.Led{
+				ID: 10,
+				R:  color,
+				G:  color,
+				B:  color,
+			})
+			if err != nil {
+				log.Fatal(err)
+			}
+			break
+		}
+
+	})
+	if err != nil {
+		log.Fatal(err)
 	}
+	defer btnSub.Cancel()
+
+	// Keep running forever
+	select {}
 }
