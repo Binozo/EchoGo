@@ -1,4 +1,4 @@
-package echohost
+package echo
 
 import "errors"
 

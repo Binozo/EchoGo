@@ -1,0 +1,6 @@
+service echogo /system/bin/sh /data/local/bin/start_server.sh
+    class late_start
+    user root
+    group root shell
+    seclabel u:r:shell:s0
+    console
