@@ -41,9 +41,9 @@ func (e *Echo) Boot(preloaderPath string) error {
 	}
 
 	// Disable SELinux policy because we don't care in this environment
-	if err := e.disableSELinux(); err != nil {
+	/*if err := e.disableSELinux(); err != nil {
 		return err
-	}
+	}*/
 
 	return e.forwardPorts()
 }

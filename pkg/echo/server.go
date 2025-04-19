@@ -74,6 +74,8 @@ func (e *Echo) Deploy(serverPath string) error {
 	if alreadyRunning {
 		_, err = e.adbDevice.RunShellCommand("start", serviceName)
 		return err
+	} else {
+		return e.forwardPorts()
 	}
 
 	return nil
@@ -101,7 +103,7 @@ func (e *Echo) forwardPorts() error {
 		adb forward tcp:localhost:6996 tcp:6996
 		adb forward tcp:127.0.0.1:6996 tcp:6996
 	*/
-	return e.adbDevice.Forward(server.Port, server.Port)
+	return e.adbDevice.Forward(server.Port, server.Port, true)
 }
 
 func (e *Echo) Ping() error {
