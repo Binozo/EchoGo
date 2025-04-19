@@ -1,48 +1,45 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGo/v2/internal/payloads"
-	"github.com/Binozo/EchoGo/v2/pkg/bindings/buttons"
-	"log"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
+	"github.com/gin-gonic/gin"
+	"io"
 	"net/http"
 )
 
-func buttonHandler(w http.ResponseWriter, r *http.Request) {
-	c, err := upgrader.Upgrade(w, r, nil)
+func (s *Server) buttonHandler(c *gin.Context) {
+	eventChan := make(chan buttons.ButtonClickEvent)
+	done := false
+
+	defer func() {
+		done = true
+		close(eventChan)
+	}()
+
+	btnSub, err := s.buttonController.SubscribeToButton(func(clickEvent buttons.ButtonClickEvent) {
+		defer func() {
+			if r := recover(); r != nil {
+
+			}
+		}()
+		if !done {
+			eventChan <- clickEvent
+		}
+	})
+	defer btnSub.Cancel()
+
 	if err != nil {
-		log.Println("Upgrade failure:", err)
+		c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
-	defer c.Close()
 
-	dotButton := buttons.GetDotButton()
-	dotBtnChan := dotButton.ListenForEvents()
-	defer close(dotBtnChan)
-	volumeButton := buttons.GetVolumeButton()
-	volumeBtnChan := volumeButton.ListenForEvents()
-	defer close(volumeBtnChan)
-
-	notifyClickEvent := func(event buttons.ClickEvent) error {
-		payload := payloads.ClickEvent{
-			Button: event.Button.Type,
-			Down:   event.Down,
-			Type:   event.ClickType.String(),
+	c.Stream(func(w io.Writer) bool {
+		btnEvent, ok := <-eventChan
+		if !ok {
+			return false
 		}
-		return c.WriteJSON(payload)
-	}
-
-	for {
-		select {
-		case clickEvent := <-dotBtnChan:
-			if err := notifyClickEvent(clickEvent); err != nil {
-				return
-			}
-			break
-		case clickEvent := <-volumeBtnChan:
-			if err := notifyClickEvent(clickEvent); err != nil {
-				return
-			}
-			break
-		}
-	}
+		c.SSEvent("button", btnEvent)
+		return true
+	})
+	done = true
 }
