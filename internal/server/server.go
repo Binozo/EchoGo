@@ -37,6 +37,7 @@ func NewServer(buttonController buttons.Controller, microphone mic.Microphone) *
 	router.GET("/ping", server.pingHandler)
 	router.POST("/leds/set", server.ledsHandler)
 	router.GET("/buttons", server.buttonHandler)
+	router.GET("/microphone", server.microphoneHandler)
 
 	server.router = router
 
