@@ -1,36 +1,51 @@
 package main
 
 import (
+	"fmt"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/mic"
 	"github.com/Binozo/EchoGo/v2/internal/server"
-	"github.com/Binozo/EchoGo/v2/pkg/bindings/buttons"
-	"github.com/Binozo/EchoGo/v2/pkg/bindings/led"
-	"github.com/Binozo/EchoGo/v2/pkg/bindings/mic"
-	"github.com/Binozo/EchoGo/v2/pkg/constants"
+	"io"
 	"log"
+	"net/http"
+	"os"
+	"strings"
+	"time"
 )
 
 func main() {
+	log.SetOutput(os.Stdout)
 	log.Println("Initializing")
-	err := mic.Init()
-	if err != nil {
-		panic(err)
-	}
-	err = led.Init()
-	if err != nil {
-		panic(err)
-	}
-	err = led.Clear()
-	if err != nil {
-		panic(err)
-	}
-	err = buttons.Init()
-	if err != nil {
-		panic(err)
-	}
-	log.Println("Listening on", constants.Port)
 
-	err = server.Serve()
+	buttonController, err := buttons.NewButtonController()
 	if err != nil {
-		panic(err)
+		log.Fatalf("Failed to initialize Button controller: %v", err)
+	}
+
+	microphone, err := mic.NewMicrophone()
+	if err != nil {
+		log.Fatalf("Failed to initialize Microphone: %v", err)
+	}
+
+	s := server.NewServer(buttonController, microphone)
+	log.Println("Starting server")
+
+	if err := s.Serve(); err != nil {
+		if strings.Contains(err.Error(), "address already in use") {
+			log.Println("Server is already running, killing")
+			response, err := http.Get(fmt.Sprintf("http://localhost:%d/kill", server.Port))
+			if err != nil {
+				log.Fatalf("Failed to send request to server: %v", err)
+			}
+			body, _ := io.ReadAll(response.Body)
+			log.Println("Kill response from server:", string(body))
+			response.Body.Close()
+			time.Sleep(time.Millisecond * 100)
+			log.Println("Now starting this instance")
+			if err = s.Serve(); err != nil {
+				log.Fatalf("Failed to start server: %v", err)
+			}
+		}
+		log.Fatal(err)
 	}
 }
