@@ -28,11 +28,15 @@ func main() {
 		if err = alexa.Boot(echo.DefaultPreloaderPath); err != nil {
 			log.Fatal(err)
 		}
+		// !!! We need to sleep here for 5 seconds because executing `alexa.Deploy()` disables SELinux enforcing
+		// Doing this too early in the boot process breaks the microphone access functionality
+		time.Sleep(5 * time.Second)
 		log.Println("Deploying server app to alexa...")
 		if err = alexa.Deploy(echo.DefaultServerPath); err != nil {
 			log.Fatal(err)
 		}
 		log.Println("Bootup completed")
+		time.Sleep(time.Second)
 	} else {
 		log.Println("Alexa is already online")
 
