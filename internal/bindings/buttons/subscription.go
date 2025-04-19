@@ -2,14 +2,18 @@ package buttons
 
 import (
 	"context"
-	evdev "github.com/gvalkov/golang-evdev"
 )
 
-type ButtonClickCallback func(button Button, clickType ClickType, down bool)
+type ButtonClickCallback func(event ButtonClickEvent)
+
+type ButtonClickEvent struct {
+	Button    Button    `json:"button"`
+	ClickType ClickType `json:"clickType"`
+	Down      bool      `json:"down"`
+}
 
 type EventSubscription struct {
 	btn    Button
-	device *evdev.InputDevice
 	cancel context.CancelFunc
 }
 

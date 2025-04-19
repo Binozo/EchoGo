@@ -20,27 +20,29 @@ func (e *EvDevController) Init() error {
 	return cmd.Run()
 }
 
-func (e *EvDevController) SubscribeToButton(button Button, callback ButtonClickCallback) (*EventSubscription, error) {
+func (e *EvDevController) SubscribeToButton(callback ButtonClickCallback) (*EventSubscription, error) {
 	if callback == nil {
 		return nil, errors.New("callback can't be nil")
 	}
 
-	device, err := evdev.Open(button.internalName)
+	dotBtn := e.GetDotButton()
+	volBtn := e.GetVolumeButton()
+	dotDevice, err := evdev.Open(dotBtn.internalName)
+	if err != nil {
+		return nil, err
+	}
+	volDevice, err := evdev.Open(volBtn.internalName)
 	if err != nil {
 		return nil, err
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
 	eventSub := &EventSubscription{
-		btn:    button,
-		device: device,
 		cancel: cancel,
 	}
 
-	go func() {
-		defer func() {
-			device.Release()
-		}()
+	readBtn := func(btn Button, btnDevice *evdev.InputDevice) {
+		defer btnDevice.Release()
 
 		beforeClickType := ClickType(0)
 		beforeDown := false
@@ -49,10 +51,11 @@ func (e *EvDevController) SubscribeToButton(button Button, callback ButtonClickC
 			if ctx.Err() != nil {
 				return
 			}
-			inputEvent, err := device.ReadOne()
+
+			inputEvent, err := btnDevice.ReadOne()
 			if err != nil {
-				cancel()
-				return // TODO: Return error?
+				// TODO: What to do now?
+				return
 			}
 
 			clickType := ClickType(inputEvent.Code)
@@ -67,9 +70,17 @@ func (e *EvDevController) SubscribeToButton(button Button, callback ButtonClickC
 				continue
 			}
 			beforeDown = down
-			callback(button, clickType, down)
+			callback(ButtonClickEvent{
+				Button:    btn,
+				ClickType: clickType,
+				Down:      down,
+			})
 		}
-	}()
+	}
+
+	go readBtn(dotBtn, dotDevice)
+	go readBtn(volBtn, volDevice)
+
 	return eventSub, nil
 }
 

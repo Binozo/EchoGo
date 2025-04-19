@@ -4,7 +4,7 @@ type ButtonType string
 
 type Button struct {
 	internalName string
-	Type         ButtonType
+	Type         ButtonType `json:"type"`
 }
 
 type ClickType uint16

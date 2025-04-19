@@ -2,7 +2,7 @@ package buttons
 
 type Controller interface {
 	Init() error
-	SubscribeToButton(button Button, callback ButtonClickCallback) (*EventSubscription, error)
+	SubscribeToButton(callback ButtonClickCallback) (*EventSubscription, error)
 	GetDotButton() Button
 	GetVolumeButton() Button
 }
