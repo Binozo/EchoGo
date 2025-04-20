@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-compiler:
+    name: 👷‍♂️ Build compiler
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,13 +28,14 @@ jobs:
         run: docker push ghcr.io/binozo/echogo:latest
 
   build-server:
+    name: 🧑‍💻 Build server
     runs-on: ubuntu-latest
     needs: build-compiler
 
     steps:
       - uses: actions/checkout@v4
       - name: Build server
-        run: ./compile
+        run: ./compile.sh
       - uses: actions/upload-artifact@v4
         with:
           name: Server
