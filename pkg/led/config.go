@@ -2,12 +2,12 @@ package led
 
 const ledCount = 12
 
-var leds []Led
+var Leds []Led
 
 func init() {
-	leds = make([]Led, ledCount)
+	Leds = make([]Led, ledCount)
 	for i := 0; i < ledCount; i++ {
-		leds[i] = Led{
+		Leds[i] = Led{
 			ID: i,
 			R:  0,
 			G:  0,

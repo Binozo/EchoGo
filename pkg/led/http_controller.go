@@ -28,7 +28,7 @@ func (h *HttpController) Init() error {
 }
 
 func (h *HttpController) GetNumLEDs() (int, error) {
-	return len(leds), nil
+	return len(Leds), nil
 }
 
 func (h *HttpController) SetLEDs(led ...Led) error {
@@ -36,7 +36,7 @@ func (h *HttpController) SetLEDs(led ...Led) error {
 	if err != nil {
 		return err
 	}
-	r, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/leds/set", h.baseUrl), bytes.NewBuffer(body))
+	r, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/Leds/set", h.baseUrl), bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}

@@ -3,8 +3,9 @@ package server
 import (
 	"fmt"
 	"github.com/Binozo/EchoGo/v2/internal"
-	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
+	internalLed "github.com/Binozo/EchoGo/v2/internal/bindings/led"
 	"github.com/Binozo/EchoGo/v2/pkg/buttons"
+	"github.com/Binozo/EchoGo/v2/pkg/led"
 	"github.com/Binozo/EchoGo/v2/pkg/mic"
 	"github.com/Binozo/EchoGo/v2/pkg/speaker"
 	"github.com/gin-gonic/gin"
@@ -56,7 +57,7 @@ func NewServer(buttonController buttons.Controller, microphone mic.Microphone, s
 			time.Sleep(stillWait)
 		}
 
-		ledController, err := led.NewDefaultController()
+		ledController, err := internalLed.NewDefaultController()
 		if err != nil {
 			log.Fatalf("Failed to initialize LED controller: %v", err)
 		}

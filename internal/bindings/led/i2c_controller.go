@@ -2,6 +2,7 @@ package led
 
 import (
 	"bytes"
+	"github.com/Binozo/EchoGo/v2/pkg/led"
 	"os"
 	"os/exec"
 )
@@ -46,20 +47,30 @@ func (i *I2CController) Init() error {
 }
 
 func (i *I2CController) GetNumLEDs() (int, error) {
-	return len(leds), nil
+	return len(led.Leds), nil
 }
 
-func (i *I2CController) SetLEDs(led ...Led) error {
+func (i *I2CController) SetLEDs(LEDs ...led.Led) error {
 	var targetColor bytes.Buffer
-	for index, curLed := range leds {
-		for _, targetLed := range led {
+	for index, curLed := range LEDs {
+		for _, targetLed := range led.Leds {
 			if curLed.ID == targetLed.ID {
-				leds[index] = targetLed
+				led.Leds[index] = targetLed
 				break
 			}
 		}
 
-		targetColor.Write(leds[index].BuildArgument())
+		targetColor.Write(led.Leds[index].BuildArgument())
 	}
 	return os.WriteFile(ledFrame, targetColor.Bytes(), perm)
+}
+
+func NewDefaultController() (led.Controller, error) {
+	controller := &I2CController{}
+
+	if err := controller.Init(); err != nil {
+		return nil, err
+	}
+
+	return controller, nil
 }

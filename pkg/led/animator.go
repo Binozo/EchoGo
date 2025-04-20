@@ -11,6 +11,7 @@ type Animator struct {
 	ledController Controller
 }
 
+// Animator for the animations found in /system/etc/led-resources
 func NewAnimator(controller Controller) *Animator {
 	return &Animator{
 		ledController: controller,
