@@ -1,9 +1,8 @@
-<br />
 <div align="center">
 <h3 align="center">EchoGo</h3>
 
   <p align="center">
-    A Go SDK for your Echo Dot **2. Gen**
+    A Go SDK for your Echo Dot <b>2. Gen</b>
     <br />
   </p>
 </div>
