@@ -333,9 +333,9 @@ Here are some useful tips:
 - Run `go run cmd/cli.go deploy -c` to compile and deploy the server to the echo
 - Run `go run cmd/cli.go run -c` to compile and run the server to the echo
 
-If you want to deploy the prebuilt server from GitHub:
+If you want to deploy the prebuilt server from GitHub navigate to the [Release page](https://github.com/Binozo/EchoGo/releases) and download the server application to `build/server`.
+Then run:
 ```shell
-$ wget -O build/server # TODO
 $ go run cmd/cli.go deploy
 ```
 
