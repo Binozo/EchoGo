@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGo/v2/pkg/buttons"
+	"github.com/Binozo/EchoGo/v3/pkg/buttons"
 	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"

@@ -2,7 +2,7 @@ package led
 
 import (
 	"bytes"
-	"github.com/Binozo/EchoGo/v2/pkg/led"
+	"github.com/Binozo/EchoGo/v3/pkg/led"
 	"os"
 	"os/exec"
 )

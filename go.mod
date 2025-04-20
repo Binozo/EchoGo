@@ -1,4 +1,4 @@
-module github.com/Binozo/EchoGo/v2
+module github.com/Binozo/EchoGo/v3
 
 go 1.24.0
 

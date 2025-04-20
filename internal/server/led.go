@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/Binozo/EchoGo/v2/pkg/led"
+	"github.com/Binozo/EchoGo/v3/pkg/led"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

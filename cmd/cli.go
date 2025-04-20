@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/Binozo/EchoGo/v2/pkg/echo"
+	"github.com/Binozo/EchoGo/v3/pkg/echo"
 	"github.com/urfave/cli/v3"
 	"log"
 	"os"

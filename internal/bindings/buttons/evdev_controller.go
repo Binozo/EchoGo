@@ -3,7 +3,7 @@ package buttons
 import (
 	"context"
 	"errors"
-	"github.com/Binozo/EchoGo/v2/pkg/buttons"
+	"github.com/Binozo/EchoGo/v3/pkg/buttons"
 	evdev "github.com/gvalkov/golang-evdev"
 	"os/exec"
 )

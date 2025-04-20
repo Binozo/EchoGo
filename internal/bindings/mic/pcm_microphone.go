@@ -5,7 +5,7 @@ package mic
 import (
 	"context"
 	"errors"
-	"github.com/Binozo/EchoGo/v2/pkg/mic"
+	"github.com/Binozo/EchoGo/v3/pkg/mic"
 	"github.com/Binozo/GoTinyAlsa/pkg/pcm"
 	"github.com/Binozo/GoTinyAlsa/pkg/tinyalsa"
 	"os/exec"

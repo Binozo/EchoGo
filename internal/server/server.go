@@ -2,12 +2,12 @@ package server
 
 import (
 	"fmt"
-	"github.com/Binozo/EchoGo/v2/internal"
-	internalLed "github.com/Binozo/EchoGo/v2/internal/bindings/led"
-	"github.com/Binozo/EchoGo/v2/pkg/buttons"
-	"github.com/Binozo/EchoGo/v2/pkg/led"
-	"github.com/Binozo/EchoGo/v2/pkg/mic"
-	"github.com/Binozo/EchoGo/v2/pkg/speaker"
+	"github.com/Binozo/EchoGo/v3/internal"
+	internalLed "github.com/Binozo/EchoGo/v3/internal/bindings/led"
+	"github.com/Binozo/EchoGo/v3/pkg/buttons"
+	"github.com/Binozo/EchoGo/v3/pkg/led"
+	"github.com/Binozo/EchoGo/v3/pkg/mic"
+	"github.com/Binozo/EchoGo/v3/pkg/speaker"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/sys/unix"
 	"log"

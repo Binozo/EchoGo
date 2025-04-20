@@ -5,7 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/Binozo/EchoGo/v2/internal"
+	"github.com/Binozo/EchoGo/v3/internal"
 	"net/http"
 	"strings"
 )

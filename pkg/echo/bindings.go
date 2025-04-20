@@ -1,10 +1,10 @@
 package echo
 
 import (
-	"github.com/Binozo/EchoGo/v2/pkg/buttons"
-	"github.com/Binozo/EchoGo/v2/pkg/led"
-	"github.com/Binozo/EchoGo/v2/pkg/mic"
-	"github.com/Binozo/EchoGo/v2/pkg/speaker"
+	"github.com/Binozo/EchoGo/v3/pkg/buttons"
+	"github.com/Binozo/EchoGo/v3/pkg/led"
+	"github.com/Binozo/EchoGo/v3/pkg/mic"
+	"github.com/Binozo/EchoGo/v3/pkg/speaker"
 )
 
 func (e *Echo) GetButtonController() buttons.Controller {

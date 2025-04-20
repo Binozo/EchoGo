@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/Binozo/EchoGo/v2/internal"
+	"github.com/Binozo/EchoGo/v3/internal"
 	"io"
 	"net/http"
 )

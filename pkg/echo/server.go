@@ -5,7 +5,7 @@ import (
 	_ "embed"
 	"errors"
 	"fmt"
-	"github.com/Binozo/EchoGo/v2/internal/server"
+	"github.com/Binozo/EchoGo/v3/internal/server"
 	"log"
 	"net/http"
 	"os"
