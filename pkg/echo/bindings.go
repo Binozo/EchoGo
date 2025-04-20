@@ -2,9 +2,9 @@ package echo
 
 import (
 	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
-	"github.com/Binozo/EchoGo/v2/internal/bindings/mic"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/speaker"
 	"github.com/Binozo/EchoGo/v2/pkg/buttons"
+	"github.com/Binozo/EchoGo/v2/pkg/mic"
 )
 
 func (e *Echo) GetButtonController() buttons.Controller {

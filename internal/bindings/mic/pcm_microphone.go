@@ -5,6 +5,7 @@ package mic
 import (
 	"context"
 	"errors"
+	"github.com/Binozo/EchoGo/v2/pkg/mic"
 	"github.com/Binozo/GoTinyAlsa/pkg/pcm"
 	"github.com/Binozo/GoTinyAlsa/pkg/tinyalsa"
 	"os/exec"
@@ -43,7 +44,7 @@ func (p *PcmMicrophone) Init() error {
 	return cmd.Run()
 }
 
-func (p *PcmMicrophone) Listen(callback AudioCallback, context context.Context) error {
+func (p *PcmMicrophone) Listen(callback mic.AudioCallback, context context.Context) error {
 	if callback == nil {
 		return errors.New("callback can't be nil")
 	}
