@@ -13,8 +13,13 @@ type ButtonClickEvent struct {
 }
 
 type EventSubscription struct {
-	btn    Button
 	cancel context.CancelFunc
+}
+
+func NewEventSubscription(cancelFunc context.CancelFunc) *EventSubscription {
+	return &EventSubscription{
+		cancel: cancelFunc,
+	}
 }
 
 func (e *EventSubscription) Cancel() {

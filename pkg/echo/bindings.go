@@ -1,13 +1,14 @@
 package echo
 
 import (
-	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
+	internalButtons "github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/mic"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/speaker"
+	"github.com/Binozo/EchoGo/v2/pkg/buttons"
 )
 
-func (e *Echo) GetButtonController() buttons.Controller {
+func (e *Echo) GetButtonController() internalButtons.Controller {
 	return buttons.NewDefaultHttpController()
 }
 

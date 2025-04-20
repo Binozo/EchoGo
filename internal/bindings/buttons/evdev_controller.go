@@ -37,9 +37,7 @@ func (e *EvDevController) SubscribeToButton(callback ButtonClickCallback) (*Even
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	eventSub := &EventSubscription{
-		cancel: cancel,
-	}
+	eventSub := NewEventSubscription(cancel)
 
 	readBtn := func(btn Button, btnDevice *evdev.InputDevice) {
 		defer btnDevice.Release()
