@@ -26,16 +26,16 @@ jobs:
       - name: Push Docker image
         run: docker push ghcr.io/binozo/echogo:latest
 
-#  build-server:
-#    runs-on: ubuntu-latest
-#    needs: build-compiler
-#
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Build server
-#        run: docker run --env TARGET="server.go" -v "$(pwd)":/EchoGoSDK ghcr.io/binozo/echogo:latest
-#      - uses: actions/upload-artifact@v4
-#        with:
-#          name: Server
-#          path: build/main
-#          retention-days: 7
+  build-server:
+    runs-on: ubuntu-latest
+    needs: build-compiler
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build server
+        run: ./compile
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Server
+          path: build/server
+          retention-days: 7
