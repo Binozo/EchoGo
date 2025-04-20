@@ -54,6 +54,8 @@ func main() {
 		}
 	}
 
+	// Custom code
+
 	btn := alexa.GetButtonController()
 	ledController := alexa.GetLedController()
 	mic := alexa.GetMicrophone()

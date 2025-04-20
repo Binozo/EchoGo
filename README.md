@@ -96,9 +96,9 @@ import (
 	"bytes"
 	"context"
 	"errors"
-	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
-	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
+	"github.com/Binozo/EchoGo/v2/pkg/buttons"
 	"github.com/Binozo/EchoGo/v2/pkg/echo"
+	"github.com/Binozo/EchoGo/v2/pkg/led"
 	"log"
 	"os"
 	"os/exec"
@@ -145,8 +145,8 @@ func main() {
 			time.Sleep(time.Second)
 		}
 	}
-	
-	// Custom code after this
+
+	// Custom code
 
 	btn := alexa.GetButtonController()
 	ledController := alexa.GetLedController()
