@@ -25,7 +25,7 @@ With this SDK you take full control over your Echo and you can abuse it as you w
   <ol>
     <li>🤫 The mute button seems to be a hardware button. If you access the microphone while the microphone is muted you will get an empty byte stream.</li>
     <li>🎨 The LEDs fully support RGB, you are not limited to Blue and Red colors.</li>
-    <li>🛜 You can find saved Wi-Fi connections at `/data/misc/wifi/wpa_supplicant.conf`</li>
+    <li>🛜 You can find saved Wi-Fi connections at <code>/data/misc/wifi/wpa_supplicant.conf</code></li>
     <li>🔊 Uses TinyAlsa under the hood; Microphone has 9 channels while the speaker has 2 channels</li>
     <li>🤖 The echo is actually an Android 7 device</li>
   </ol>
