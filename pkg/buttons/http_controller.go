@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Binozo/EchoGo/v2/internal"
-	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
 	"net/http"
 	"strings"
 )
@@ -29,14 +28,14 @@ func (h *HttpController) Init() error {
 	return nil
 }
 
-func (h *HttpController) SubscribeToButton(callback buttons.ButtonClickCallback) (*buttons.EventSubscription, error) {
+func (h *HttpController) SubscribeToButton(callback ButtonClickCallback) (*EventSubscription, error) {
 	res, err := http.Get(fmt.Sprintf("%s/buttons", h.baseUrl))
 	if err != nil {
 		return nil, err
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	sub := buttons.NewEventSubscription(cancel)
+	sub := NewEventSubscription(cancel)
 
 	go func() {
 		defer res.Body.Close()
@@ -50,7 +49,7 @@ func (h *HttpController) SubscribeToButton(callback buttons.ButtonClickCallback)
 
 			if strings.HasPrefix(line, "data:") {
 				rawJsonPayload := strings.Split(line, "data:")[1]
-				var event buttons.ButtonClickEvent
+				var event ButtonClickEvent
 				if err := json.Unmarshal([]byte(rawJsonPayload), &event); err != nil {
 					// TODO: Error handling
 					return
@@ -68,14 +67,14 @@ func (h *HttpController) SubscribeToButton(callback buttons.ButtonClickCallback)
 	return sub, nil
 }
 
-func (h *HttpController) GetDotButton() buttons.Button {
-	return buttons.Button{
-		Type: buttons.DotButton,
+func (h *HttpController) GetDotButton() Button {
+	return Button{
+		Type: DotButton,
 	}
 }
 
-func (h *HttpController) GetVolumeButton() buttons.Button {
-	return buttons.Button{
-		Type: buttons.VolumeButton,
+func (h *HttpController) GetVolumeButton() Button {
+	return Button{
+		Type: VolumeButton,
 	}
 }
