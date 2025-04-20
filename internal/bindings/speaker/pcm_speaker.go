@@ -3,9 +3,11 @@
 package speaker
 
 import (
+	"context"
 	"github.com/Binozo/GoTinyAlsa/pkg/pcm"
 	"github.com/Binozo/GoTinyAlsa/pkg/tinyalsa"
 	"os/exec"
+	"time"
 )
 
 const cardNr = 0
@@ -14,6 +16,8 @@ const deviceNr = 23
 type PcmSpeaker struct {
 	device       *tinyalsa.AlsaDevice
 	audioSession *tinyalsa.AudioSession
+
+	noiseSuppressorCancel context.CancelFunc
 }
 
 // NewPcmSpeaker returns the pre-configured speaker alsa device
@@ -45,10 +49,37 @@ func (p *PcmSpeaker) Init() error {
 		return err
 	}
 	p.audioSession = &audioSession
+
+	context, cancel := context.WithCancel(context.Background())
+	p.noiseSuppressorCancel = cancel
+
+	go func() {
+		// This is very special. When we kill the mixer process and do not play any sound the speaker will emit random electronic noise
+		// If you want to know how that hears like then simply put a return before this for loop
+		// Do bypass this problem we randomly emit no noise every second
+		// This bypass will be automatically disabled when you start playing sound yourself to ensure smooth playback
+		for {
+			time.Sleep(1 * time.Second)
+
+			if context.Err() != nil {
+				p.noiseSuppressorCancel = nil
+				return
+			}
+
+			antiNoiseData := make([]byte, 512)
+			if err := p.audioSession.Pump(antiNoiseData); err != nil {
+				return
+			}
+
+		}
+	}()
 	return nil
 }
 
 func (p *PcmSpeaker) Pump(data []byte) error {
+	if p.noiseSuppressorCancel != nil {
+		p.noiseSuppressorCancel()
+	}
 	return p.audioSession.Pump(data)
 }
 
