@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/mic"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/speaker"
 	"github.com/Binozo/EchoGo/v2/internal/server"
 	"io"
 	"log"
@@ -27,7 +28,12 @@ func main() {
 		log.Fatalf("Failed to initialize Microphone: %v", err)
 	}
 
-	s := server.NewServer(buttonController, microphone)
+	pcmSpeaker, err := speaker.NewPcmSpeaker()
+	if err != nil {
+		log.Fatalf("Failed to initialize PCM Speaker: %v", err)
+	}
+
+	s := server.NewServer(buttonController, microphone, pcmSpeaker)
 	log.Println("Starting server")
 
 	if err := s.Serve(); err != nil {

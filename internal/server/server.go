@@ -6,6 +6,7 @@ import (
 	"github.com/Binozo/EchoGo/v2/internal/bindings/buttons"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/led"
 	"github.com/Binozo/EchoGo/v2/internal/bindings/mic"
+	"github.com/Binozo/EchoGo/v2/internal/bindings/speaker"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/sys/unix"
 	"log"
@@ -21,15 +22,17 @@ type Server struct {
 	ledController    led.Controller
 	buttonController buttons.Controller
 	mic              mic.Microphone
+	speaker          speaker.Speaker
 }
 
-func NewServer(buttonController buttons.Controller, microphone mic.Microphone) *Server {
+func NewServer(buttonController buttons.Controller, microphone mic.Microphone, speaker speaker.Speaker) *Server {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	server := &Server{
 		buttonController: buttonController,
 		mic:              microphone,
+		speaker:          speaker,
 	}
 
 	router.GET("/", server.rootHandler)
@@ -38,6 +41,7 @@ func NewServer(buttonController buttons.Controller, microphone mic.Microphone) *
 	router.POST("/leds/set", server.ledsHandler)
 	router.GET("/buttons", server.buttonHandler)
 	router.GET("/microphone", server.microphoneHandler)
+	router.POST("/speaker", server.speakerHandler)
 
 	server.router = router
 
